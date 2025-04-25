@@ -53,7 +53,7 @@ public class Post {
         this.updatedAt = LocalDateTime.now();
     }
 
-    @PrePersist
+    @PreUpdate
     public void onUpdate(){
         this.updatedAt = LocalDateTime.now();
     }
