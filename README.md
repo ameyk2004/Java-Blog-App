@@ -46,3 +46,16 @@ The `class model diagram` has additional information like the relationships, dat
 
 ![Rest API Model](readme_images/rest_api_design.png)
 
+
+# Running the Database
+We'll set up a PostgreSQL database using Docker Compose, which will serve as the persistent
+data store for our blog.
+
+This containerized approach ensures consistency across development environments and simplifies
+database management.
+
+- create a new file named docker-compose.yml
+
+
+
+
