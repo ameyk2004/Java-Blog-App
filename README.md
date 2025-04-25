@@ -193,3 +193,8 @@ Defines the attributes for a column (e.g., length, nullable, unique).
 @Column(length = 100, nullable = false, unique = true)
 private String title;
 ```
+
+## `@PrePersist` Annotation
+The @PrePersist annotation is used in JPA entities to mark a method that should be executed before an entity is persisted (saved) into the database. This is part of the entity lifecycle, and the method annotated with @PrePersist is triggered automatically when the EntityManager's persist() method is called.
+
+Automatically set timestamps like createdAt or updatedAt without needing to manually assign values each time
