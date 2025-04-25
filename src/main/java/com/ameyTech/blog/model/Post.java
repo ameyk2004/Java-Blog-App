@@ -3,6 +3,8 @@ package com.ameyTech.blog.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -18,11 +20,40 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
 
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String content;
-    private User author;
 
-    private Integer
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private PostStatus status;
 
+    private Integer readingTime;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return Objects.equals(uuid, post.uuid) && Objects.equals(title, post.title) && Objects.equals(content, post.content) && status == post.status && Objects.equals(readingTime, post.readingTime) && Objects.equals(createdAt, post.createdAt) && Objects.equals(updatedAt, post.updatedAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid, title, content, status, readingTime, createdAt, updatedAt);
+    }
+
+    @PrePersist
+    public void onCreate(){
+        this.createdAt = LocalDateTime.now();
+    }
+
+    @PrePersist
+    public void onUpdate(){
+        this.updatedAt = LocalDateTime.now();
+    }
 }
