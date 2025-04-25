@@ -297,3 +297,33 @@ private Set<Tag> tags = new HashSet<>();
 
 - JPA creates a **join table** (`post_tags`) with foreign keys referencing both `Post` and `Tag`.
 - This table connects the many-to-many relationship.
+
+
+---
+
+## Creating Repositories
+
+To handle database operations, we'll use **Spring Data JPA Repositories**.
+
+### Step-by-step
+
+1. **Create a new package**:\
+   Inside your project, create a package named:
+
+   ```
+   com.ameyTech.blog.repository
+   ```
+
+2. **Create interfaces for each entity**:
+   Each interface extends `JpaRepository<EntityName, IDType>`.\
+   Example for a `Post` entity with `Long` as ID:
+
+   ```java
+   public interface UserRepository extends JpaRepository<Post, Long> {
+   }
+   ```
+
+3. **Spring Boot auto-implements** these interfaces at runtime, so you don’t need to write boilerplate code for basic CRUD operations.
+
+---
+
