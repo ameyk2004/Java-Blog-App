@@ -3,6 +3,8 @@ package com.ameyTech.blog.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,9 +21,11 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-
     @Column(nullable = false, unique = true)
     private String name;
+
+    @ManyToMany(mappedBy = "tags")
+    private List<Post> posts = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
