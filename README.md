@@ -276,3 +276,24 @@ private List<Comment> comments;
 ```
 
 ---
+### `@ManyToMany`
+
+Maps a **many-to-many** relationship between two entities.
+
+📌 **Example**:\
+A `Post` can have many `Tags`, and a `Tag` can be associated with many `Posts`.
+
+```java
+@ManyToMany
+@JoinTable(
+    name = "post_tags",
+    joinColumns = @JoinColumn(name = "post_id"),
+    inverseJoinColumns = @JoinColumn(name = "tag_id")
+)
+private Set<Tag> tags = new HashSet<>();
+```
+
+&#x20;**What's happening here?**
+
+- JPA creates a **join table** (`post_tags`) with foreign keys referencing both `Post` and `Tag`.
+- This table connects the many-to-many relationship.
