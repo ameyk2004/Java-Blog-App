@@ -157,3 +157,11 @@ Configure the Maven compiler plugin to work with MapStruct and Lombok:
 ```
 
 Now, MapStruct is set up and ready to generate DTOs when needed.
+
+## Entity Creation
+
+First things first, we will create all the entities required for the project. These entities will be placed in the **`models`** package.
+
+Later, we'll also create the corresponding DTOs (Data Transfer Objects) to handle data transfer and mapping between the entities.
+
+- Notes 
