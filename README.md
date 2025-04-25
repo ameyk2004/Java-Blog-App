@@ -41,3 +41,8 @@ The `class model diagram` has additional information like the relationships, dat
 ## Architecture Overview
 
 ![Architecture Model](readme_images/architecture.png)
+
+## Rest API Design
+
+![Rest API Model](readme_images/rest_api_design.png)
+
