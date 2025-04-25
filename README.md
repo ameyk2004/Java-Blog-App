@@ -198,3 +198,81 @@ private String title;
 The @PrePersist annotation is used in JPA entities to mark a method that should be executed before an entity is persisted (saved) into the database. This is part of the entity lifecycle, and the method annotated with @PrePersist is triggered automatically when the EntityManager's persist() method is called.
 
 Automatically set timestamps like createdAt or updatedAt without needing to manually assign values each time
+
+
+
+---
+
+## Entity Relationships in JPA
+
+#### 1. **@OneToOne**
+
+Maps a one-to-one relationship between two entities.\
+Example: A user has one profile.
+
+#### 2. **@OneToMany**
+
+Maps a one-to-many relationship.\
+Example: A user can have multiple blog posts.
+
+#### 3. **@ManyToOne**
+
+The inverse of `@OneToMany`.\
+Example: Each blog post belongs to one user.
+
+#### 4. **@ManyToMany**
+
+Maps a many-to-many relationship.\
+Example: A post can have many tags, and each tag can belong to many posts.
+---
+### `FetchType.LAZY` vs `EAGER`
+
+- **`LAZY`** (default for collections): Data is **loaded only when accessed**.
+- **`EAGER`**: Data is **loaded immediately** with the parent entity.
+
+Using `LAZY` helps improve performance by avoiding unnecessary database hits.
+
+```java
+@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+private List<Post> posts;
+```
+
+---
+
+### `@JoinColumn`
+
+Used to customize the foreign key column in a relationship.
+
+```java
+@JoinColumn(name = "user_id", nullable = false)
+private User user;
+```
+
+This will create a column named `user_id` in the child table referencing the parent `User`.
+
+---
+
+#### `cascade`
+
+Defines operations that should be automatically passed from parent to child.
+Common types:
+
+- `CascadeType.ALL`: All operations (persist, merge, remove, etc.)
+- `CascadeType.PERSIST`: Child is saved automatically with parent
+- `CascadeType.REMOVE`: Child is deleted when parent is deleted
+
+```java
+@OneToMany(cascade = CascadeType.ALL)
+private List<Comment> comments;
+```
+
+#### `orphanRemoval = true`
+
+Automatically deletes child entities if they are removed from the parent collection.
+
+```java
+@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+private List<Comment> comments;
+```
+
+---
