@@ -37,3 +37,7 @@ The `domain model diagram` helps us to see how the different enties in the proje
 ![Class Model](readme_images/class_model_diagram.png)
 
 The `class model diagram` has additional information like the relationships, datatypes of each attribute.
+
+## Architecture Overview
+
+![Architecture Model](readme_images/architecture.png)
