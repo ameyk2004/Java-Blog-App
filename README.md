@@ -103,4 +103,57 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
 MapStruct is a tool that automatically creates code to convert data between different formats like DTOs and Domain Entities. Instead of manually writing this conversion code, MapStruct does it for you during the build process, making it faster and safer. It avoids using slow methods that reflect on the data. Since it works well with tools like Lombok and Spring, it’s a great choice for our blog project. We'll set it up now and explore how to use it later.
 
-### Add the Dependency
+### Adding Dependencies
+
+Add MapStruct and Lombok dependencies to your `pom.xml`:
+
+```xml
+<properties>
+    <org.mapstruct.version>1.6.3</org.mapstruct.version>
+    <lombok.version>1.18.36</lombok.version>
+</properties>
+
+<dependencies>
+    <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>${org.mapstruct.version}</version>
+    </dependency>
+</dependencies>
+```
+
+### Configuring Compiler Plugin
+
+Configure the Maven compiler plugin to work with MapStruct and Lombok:
+
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <annotationProcessorPaths>
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <version>${lombok.version}</version>
+                    </path>
+                    <path>
+                        <groupId>org.mapstruct</groupId>
+                        <artifactId>mapstruct-processor</artifactId>
+                        <version>${org.mapstruct.version}</version>
+                    </path>
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok-mapstruct-binding</artifactId>
+                        <version>0.2.0</version>
+                    </path>
+                </annotationProcessorPaths>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+Now, MapStruct is set up and ready to generate DTOs when needed.
