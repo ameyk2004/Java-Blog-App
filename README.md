@@ -27,3 +27,7 @@ Got it! Here's the updated table with two dependencies per row:
 | H2                 | In-memory database for testing         |
 
 ---
+
+## Project Overview
+
+![Image](readme_images/domain_model.png)
