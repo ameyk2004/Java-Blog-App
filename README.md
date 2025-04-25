@@ -164,4 +164,32 @@ First things first, we will create all the entities required for the project. Th
 
 Later, we'll also create the corresponding DTOs (Data Transfer Objects) to handle data transfer and mapping between the entities.
 
-- Notes 
+### Basic Annotations
+
+### 1. **`@Entity`**
+Marks a class as a JPA entity, mapping it to a database table.
+
+### 2. **`@Table`**
+Specifies the table name in the database for the entity.
+```java
+@Table(name = "blogs")
+```
+
+### 3. **`@Getter` & `@Setter`**
+Automatically generates getter and setter methods for class fields.
+
+### 4. **`@Builder`**
+Generates a builder pattern to easily create instances of the class.
+
+### 5. **`@Id`**
+Marks the primary key field of the entity.
+
+### 6. **`@GeneratedValue`**
+Specifies how the primary key value will be generated (e.g., auto-increment).
+
+### 7. **`@Column`**
+Defines the attributes for a column (e.g., length, nullable, unique).
+```java
+@Column(length = 100, nullable = false, unique = true)
+private String title;
+```
