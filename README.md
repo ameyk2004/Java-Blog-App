@@ -7,30 +7,23 @@ This repository is a step-by-step journey through building a secure and efficien
 Generate your Spring Boot project via [start.spring.io](https://start.spring.io) with the following settings:
 
 ### Project Settings
-- **Project:** Maven
-- **Language:** Java
-- **Spring Boot:** 3.4.0
-- **Group:** `com.ameyTech`
-- **Artifact / Name:** `blog`
+- **Project:** Maven | **Language:** Java | **Java:** 21 | **Boot Version:** 3.4.0
+- **Group:** `com.devtiro` | **Artifact/Name:** `blog`
+- **Package:** `com.devtiro.blog` | **Packaging:** JAR
 - **Description:** A blog platform
-- **Package Name:** `com.ameyTech.blog`
-- **Packaging:** JAR
-- **Java Version:** 21
 
 ### Dependencies
 Click **"Add Dependencies"** and select:
-- Spring Web – REST API support
-- Spring Data JPA – ORM and persistence
-- PostgreSQL Driver – PostgreSQL database connection
-- Spring Security – Authentication & authorization
-- Lombok – Reduce boilerplate
-- Validation – Bean validation
-- H2 – In-memory test database
+Got it! Here's the updated table with two dependencies per row:
 
-### 🛠️ Setup Instructions
-
-1. Click **"Generate"** to download the ZIP.
-2. Extract the project to your workspace.
-3. Open it in your IDE (e.g., IntelliJ).
+| Dependency         | Purpose                                |
+|--------------------|----------------------------------------|
+| Spring Web         | REST API support                       |
+| Spring Data JPA    | ORM & persistence                      |
+| PostgreSQL Driver  | Connect to PostgreSQL database         |
+| Spring Security    | Authentication & authorization         |
+| Lombok             | Reduces boilerplate code               |
+| Validation         | Enables bean validation                |
+| H2                 | In-memory database for testing         |
 
 ---
