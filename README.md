@@ -81,7 +81,23 @@ services:
 docker-compose up -d
 ```
 
+## Connecting to Database
 
+#### Add this in `application.properties`
+```
+spring.application.name=blog
+
+# Database Connection
+spring.datasource.url=jdbc:postgresql://localhost:5442/blog_db
+spring.datasource.username=amey
+spring.datasource.password=Amey1234!
+
+# JPA Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+```
 
 
 
