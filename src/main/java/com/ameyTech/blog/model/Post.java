@@ -38,6 +38,10 @@ public class Post {
     @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
