@@ -30,4 +30,10 @@ Got it! Here's the updated table with two dependencies per row:
 
 ## Project Overview
 
-![Image](readme_images/domain_model.png)
+![Domain Model](readme_images/domain_model.png)
+
+The `domain model diagram` helps us to see how the different enties in the project are related, what kind of attributes does each domain have and how are they going to communicate with each other.
+
+![Class Model](readme_images/class_model_diagram.png)
+
+The `class model diagram` has additional information like the relationships, datatypes of each attribute.
