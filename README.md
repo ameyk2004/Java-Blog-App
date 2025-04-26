@@ -327,3 +327,122 @@ To handle database operations, we'll use **Spring Data JPA Repositories**.
 
 ---
 
+## REST API Endpoint Creation
+
+This section outlines how to create API endpoints in a layered Spring Boot application using Controllers, Services, and Mappers.
+
+---
+
+### Creating the Controller
+
+Controllers handle incoming HTTP requests and return appropriate responses.
+
+**Steps:**
+
+1. Create a `controllers` package.
+2. Use `@RestController` to mark the class as a REST controller.
+3. Use `@RequestMapping("/api/v1/...")` to define the base URL.
+4. Inject the service and mapper using `@RequiredArgsConstructor`.
+
+**Example:**
+
+```java
+@RestController
+@RequestMapping("/api/v1/categories")
+@RequiredArgsConstructor
+public class CategoryController {
+    private final CategoryService categoryService;
+    private final CategoryMapper categoryMapper;
+
+    @GetMapping
+    public ResponseEntity<List<CategoryDto>> listCategories() {
+        return ResponseEntity.ok(
+            categoryService.listCategories()
+                           .stream()
+                           .map(categoryMapper::toDto)
+                           .toList()
+        );
+    }
+}
+```
+
+**Annotations:**
+
+- `@RestController`: Defines the class as a REST controller.
+- `@RequestMapping`: Sets base route for all methods.
+- `@GetMapping`: Handles GET HTTP requests.
+- `@RequiredArgsConstructor`: Lombok generates constructor for required dependencies.
+
+---
+
+### Creating the Service
+
+Services contain business logic and interact with repositories.
+
+**Steps:**
+
+1. Create a `services` package and an interface for the service.
+2. Create an `impl` subpackage for the implementation.
+3. Use `@Service` for the implementation class.
+
+**Example:**
+
+```java
+public interface CategoryService {
+    List<Category> listCategories();
+}
+```
+
+```java
+@Service
+@RequiredArgsConstructor
+public class CategoryServiceImpl implements CategoryService {
+    private final CategoryRepository categoryRepository;
+
+    @Override
+    public List<Category> listCategories() {
+        return categoryRepository.findAllWithPostCount();
+    }
+}
+```
+
+### Using Mappers
+
+A **Mapper** is used to convert one object type to another — commonly from an **Entity** (used in DB) to a **DTO** (used in API responses), and vice versa.
+
+---
+
+### Why do we need it?
+
+- Entities often contain extra data that we don't want to expose in APIs.
+- DTOs are cleaner and safer to send as API responses.
+- Manually converting entities to DTOs is repetitive and error-prone.
+- **MapStruct** helps automate this conversion with minimal code.
+
+---
+
+### How to Use MapStruct
+
+#### 1. Create a DTO
+#### 2. Create a Mapper Interface
+#### 3. Use the Mapper in Controller
+
+### Key Mapstruct Annotations
+
+#### 🔍 `@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)`
+
+This is a **MapStruct** annotation that turns the interface into a mapper class. Here's what each part means:
+
+- **`componentModel = "spring"`**:  
+  This tells MapStruct to generate the mapper as a **Spring bean** so you can `@Autowired` or `@RequiredArgsConstructor` inject it like any other Spring component.
+
+- **`unmappedTargetPolicy = ReportingPolicy.IGNORE`**:  
+  If some fields in the target class (like `CategoryDto`) are not mapped explicitly, this setting prevents MapStruct from throwing warnings or errors. It just ignores unmapped fields silently.
+
+
+#### `@Mapping(target = "postCount", expression = "java(calculatePostCount(category.getPosts()))")`
+
+This maps a field from the source (`Category`) to the target (`CategoryDto`).
+
+---
+
