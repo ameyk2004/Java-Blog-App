@@ -490,3 +490,56 @@ In real-world apps, different types of errors can occur (bad requests, server is
   → **Specific Handler**: For custom errors like duplicate category names, returns 400 Bad Request.
 
 
+---
+
+## Adding Spring Security
+
+Now that category management and error handling are in place, we'll **secure** the app to allow **public viewing** but **restrict modifications**.
+
+---
+
+### Why Security?
+
+- Allow users to **read posts freely**.
+- Restrict **create/update/delete** to **authenticated users**.
+- Prepare the app for **user login** and **JWT authentication**.
+
+---
+
+### Add These Dependencies (pom.xml):
+
+```xml
+<!-- Spring Security -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+<!-- JWT Support -->
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-api</artifactId>
+    <version>0.11.5</version>
+</dependency>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-impl</artifactId>
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+</dependency>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-jackson</artifactId>
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+</dependency>
+```
+
+---
+
+### After Adding:
+
+- All endpoints are **protected** by default.
+- We'll later **customize** security to allow **public GETs** and **protected POST/PUT/DELETE**.
+
+---
