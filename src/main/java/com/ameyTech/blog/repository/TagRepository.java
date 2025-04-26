@@ -1,6 +1,6 @@
 package com.ameyTech.blog.repository;
 
-import com.ameyTech.blog.model.Tag;
+import com.ameyTech.blog.domain.model.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

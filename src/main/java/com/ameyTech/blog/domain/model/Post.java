@@ -1,5 +1,6 @@
-package com.ameyTech.blog.model;
+package com.ameyTech.blog.domain.model;
 
+import com.ameyTech.blog.domain.PostStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

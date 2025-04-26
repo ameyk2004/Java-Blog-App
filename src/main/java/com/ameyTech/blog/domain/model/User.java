@@ -1,4 +1,4 @@
-package com.ameyTech.blog.model;
+package com.ameyTech.blog.domain.model;
 
 import jakarta.persistence.*;
 import lombok.*;

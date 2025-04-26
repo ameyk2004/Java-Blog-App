@@ -1,4 +1,4 @@
-package com.ameyTech.blog.model;
+package com.ameyTech.blog.domain.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,13 +9,14 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "categories")
-@NoArgsConstructor
+@Table(name = "tags")
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Category {
+public class Tag {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -23,15 +24,15 @@ public class Category {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "tags")
     private List<Post> posts = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return Objects.equals(id, category.id) && Objects.equals(name, category.name) && Objects.equals(posts, category.posts);
+        Tag tag = (Tag) o;
+        return Objects.equals(id, tag.id) && Objects.equals(name, tag.name) && Objects.equals(posts, tag.posts);
     }
 
     @Override
