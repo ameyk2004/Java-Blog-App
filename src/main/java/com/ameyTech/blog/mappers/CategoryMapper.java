@@ -2,6 +2,7 @@ package com.ameyTech.blog.mappers;
 
 import com.ameyTech.blog.domain.PostStatus;
 import com.ameyTech.blog.domain.dto.CategoryDto;
+import com.ameyTech.blog.domain.dto.CreateCategoryRequest;
 import com.ameyTech.blog.domain.model.Category;
 import com.ameyTech.blog.domain.model.Post;
 import org.mapstruct.Mapper;
@@ -25,7 +26,7 @@ public interface CategoryMapper {
     }
 
 
-//    Category toEntity(CreateCategoryRequest createCategoryRequest);
+    Category toEntity(CreateCategoryRequest createCategoryRequest);
 
     @Mapping(target = "postCount", source = "posts", qualifiedByName = "caclulatePostCount")
     CategoryDto toDto(Category category);
