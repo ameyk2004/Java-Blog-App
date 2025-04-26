@@ -446,3 +446,47 @@ This maps a field from the source (`Category`) to the target (`CategoryDto`).
 
 ---
 
+## Centralized Error Handling in Spring `@ControllerAdvice`
+
+In real-world apps, different types of errors can occur (bad requests, server issues, etc.).\
+**Centralized error handling** ensures all errors are caught uniformly and meaningful responses are sent to the frontend.
+
+---
+
+![ControllerAdvice](readme_images/ControllerAdvice.png)
+
+| Annotation          | Purpose                                                             |
+| ------------------- | ------------------------------------------------------------------- |
+| `@ControllerAdvice` | Marks this class as a **global error handler** for all controllers. |
+| `@RestController`   | Ensures **responses are JSON** (instead of error HTML pages).       |
+| `@ExceptionHandler` | Tells Spring **which method handles which exception type**.         |
+| `@Slf4j`            | Enables **logging errors** to help in debugging.                    |
+
+---
+
+### Important Classes:
+
+1. **ErrorController** (`@RestController`, `@ControllerAdvice`)
+
+    - Catches all exceptions using methods annotated with `@ExceptionHandler`.
+    - Returns a `ResponseEntity<ApiErrorResponse>` with appropriate HTTP status and error message.
+    - Logs the exception (`log.error()`).
+
+2. **ApiErrorResponse** (DTO Class)
+
+    - Defines the standard error response structure.
+        - `status` → HTTP code
+        - `message` → Description of the error
+        - `errors` → (Optional) Field-level errors
+
+---
+
+### Key Points:
+
+- `handleException(Exception ex)`\
+  → **Generic Catch**: If no specific handler is found, returns 500 Internal Server Error.
+
+- `handleIllegalArgumentException(IllegalArgumentException ex)`\
+  → **Specific Handler**: For custom errors like duplicate category names, returns 400 Bad Request.
+
+
