@@ -43,4 +43,19 @@ public class ErrorController {
         );
     }
 
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ApiErrorResponse> handleIllegalStateException(IllegalStateException ex){
+        log.error("Caught Illegal State exception", ex);
+
+        ApiErrorResponse errorResponse = ApiErrorResponse.builder()
+                .status(HttpStatus.CONFLICT.value())
+                .message(ex.getMessage())
+                .build();
+
+        return new ResponseEntity<>(
+                errorResponse,
+                HttpStatus.CONFLICT
+        );
+    }
+
 }
