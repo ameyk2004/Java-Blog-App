@@ -543,3 +543,5 @@ Now that category management and error handling are in place, we'll **secure** t
 - We'll later **customize** security to allow **public GETs** and **protected POST/PUT/DELETE**.
 
 ---
+
+## JWT auth
